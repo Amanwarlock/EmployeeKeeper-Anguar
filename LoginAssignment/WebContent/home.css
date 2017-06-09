@@ -1,0 +1,255 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	position: relative;
+	display: flex;
+	margin: 0;
+	padding-top: 0;
+	background-color: #ccc;
+}
+
+.header {
+	color: white;
+	background: black;
+	padding-left: 20px;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	display: flex;
+}
+
+.main-container {
+	margin-top: 6%;
+	width: 100%;
+}
+
+.user-field {
+	display: block;
+	padding-bottom: 5px;
+	color: #CCC;
+	font-size: 14px;
+}
+
+.button-container {
+	display: flex;
+	width: 50%;
+	margin-top: 40px !important;
+	margin: auto;
+}
+
+.emp-button {
+	border: 0;
+	margin-right: 10%;
+	padding: 16px;
+	width: 40%;
+	margin-right: 10px;
+	font-size: 15px;
+	text-transform: uppercase;
+	color: white;
+}
+
+.info-pair {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	margin-right: 10%;
+}
+
+.add-employee-container {
+	width: 60%;
+	margin: auto;
+	position: relative;
+}
+
+.Error-msg {
+	display: block;
+	color: red;
+}
+
+input {
+	padding: 5px;
+}
+
+input[name="age"] {
+	width: 10%;
+}
+
+.emp-button {
+	color: white;
+	background: #b5cd60;
+	padding: 10px;
+	background: #096;
+}
+
+.cancel {
+	background: hsla(0, 100%, 53%, 0.78) !important;
+}
+
+.address-field {
+	display: block;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table, td, th {
+	border: 1px solid #ddd;
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+th, td {
+	padding: 15px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #f5f5f5
+}
+
+
+tr {
+	background-color: #f2f2f2
+}
+
+/* tr:nth-child(even) {
+	background-color: #f2f2f2
+} */
+
+.table-div {
+	overflow-x: auto;
+	margin-top: 60px !important;
+	width: 99%;
+	margin: auto;
+}
+
+button.create-employee {
+	border: 0;
+	padding: 9px;
+	width: 10%;
+	background-color: #21abff;
+	color: white;
+	position: absolute;
+	top: 0;
+	right: 20px;
+}
+
+.list-of-employees {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.myIcons {
+	padding-right: 10px;
+	font-size: 15px !important;
+}
+
+.no-emp-msg {
+	padding-left: 20px;
+	font-size: 1.5em;
+	word-spacing: 2px;
+}
+
+.edit-info, .delete-info {
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+	background-color: #21abff;
+	color: white;
+	border: 0;
+}
+
+.delete-info {
+	background: hsla(0, 100%, 53%, 0.78) !important;
+}
+
+.footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	color: white;
+	background-color: black;
+	height: 90px;
+}
+
+.my-info {
+	width: 50%;
+	margin: auto;
+	text-align: center;
+	font-size: 14px;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 1% !important;
+}
+
+.footer-icon {
+	padding-right: 10px;
+}
+
+form {
+	padding: 10px;
+	background: #1C2B4A;
+	padding: 10%;
+}
+
+input {
+	background: #12192C;
+	border: 0;
+	padding: 10px;
+	color : #ccc;
+}
+
+input[type=date]
+{
+	color: #8a8484;
+}
+
+textarea {
+	background: #12192C;
+	border: 0;
+	color: #CCC;
+}
+
+.employee-form-header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	background: #17233B;
+	color: #CCC;
+	box-sizing: border-box;
+	padding: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+.panel-icon {
+	padding-right: 10px;
+}
+
+
+a
+{
+	    margin: auto;
+	margin-left: 0 !important;
+}
+
+
+h1
+{
+	width: 93%;
+}
+

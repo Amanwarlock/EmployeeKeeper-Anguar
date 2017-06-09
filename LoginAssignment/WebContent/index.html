@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="google-signin-client_id" content="654386445527-klfisj6j6f61484486frpduivtiu34ir.apps.googleusercontent.com">
+
+<title>Login Page</title>
+<script src="angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<link rel="stylesheet" href="loginpage.css">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+
+<div class="login-page-main" ng-app="loginapp" ng-controller="loginctrl">
+
+<div ng-view></div>
+
+
+<div class="login-tabs-container">
+
+<div class="tab-link" id="logintab" onclick="onTabEvent(event , 'logincontent' )">Login</div>
+
+<div class="tab-link" id="signuptab" onclick="onTabEvent(event ,'signupcontent')">Sign up</div>
+
+
+</div>
+
+
+<div id="logincontent" class="tab-content" >
+
+<label class="user-info"><i class="fa fa-user" aria-hidden="true"></i><b>Username</b></label>
+ <input type=text placeholder="User Name" required>
+ 
+<label class="user-info"><b>Password</b></label>
+<input type="password" placeholder="Enter Password" required>
+
+<a class="link"  href='#'><!-- href="home.html" --><button class="login-button" id="loginBtn" >Login</button></a>
+
+<div class="or-div"><b>OR</b></div>
+
+<div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onSignInFailure"></div>
+
+
+
+</div>
+
+<div   id="signupcontent" class="tab-content">
+
+<div  class="google-container" >
+<p>Sign in with Googel</p>
+
+<div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onSignInFailure"></div>
+
+<button class="loginBtn loginBtn--google"  onclick="onSignIn()" data-onsuccess="onSignIn" data-onfailure="onSignInFailure">
+  Login with Google
+</button>
+
+</div>
+</div>
+
+
+
+</div>
+
+<script src="login.js"></script>
+<script>
+var app =angular.module("loginapp" , ["ngRoute"]);
+
+app.controller("loginctrl" , function($scope ,$location)
+		{
+	
+	
+
+	
+		});
+
+
+app.config(function($routeProvider) {
+	
+		 $routeProvider
+		    .when("/home", {
+		        templateUrl : "home.htm",
+		        controller : "loginctrl"
+		    });
+   
+});
+
+</script>
+
+</body> 
+</html>

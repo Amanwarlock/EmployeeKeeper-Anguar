@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="google-signin-client_id" content="654386445527-klfisj6j6f61484486frpduivtiu34ir.apps.googleusercontent.com">
+<title>Home</title>
+
+<script src="angular.min.js"></script>
+<script type="text/javascript"
+	src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
+	
+	
+	<script type="text/javascript"
+	src='https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.6.0/angular-local-storage.min.js'></script>
+	
+	
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+<link rel="stylesheet" href="home.css">
+
+<link rel="stylesheet" href="font-awesome-4.7.0\font-awesome-4.7.0\css\font-awesome.min.css">
+
+<script>
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+      window.location="http://localhost:8080/LoginAssignment/";
+    });
+  }
+  
+  function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+        var flag = gapi.auth2.getAuthInstance().isSignedIn.get();
+        if(!flag)
+        	{
+        	console.log("user had logged out");
+        	}
+      });
+     
+    }
+
+  
+  
+
+
+</script>
+</head>
+
+<body>
+
+<script src="app.js"></script>
+	<script src="appcontroller.js"></script>
+
+
+	<div class="header">
+		<h1>Dashboard</h1>
+		<a href="#" onclick="signOut();"><button class="sign-out"><i class="fa fa-sign-out myIcons" aria-hidden="true"></i>Sign out</button></a>
+	</div>
+	<div  class="main-container" ng-app="myapp" ng-controller="mycontroller" ng-init="shouldShow=false">
+
+
+
+		<div class="list-of-employees" ng-show=!shouldShow>
+
+			<button class="create-employee" ng-click="createEmployee(true)"
+				ng-show=!shouldShow><i class="fa fa-plus-circle myIcons" aria-hidden="true"></i>Add Employee</button>
+
+	<div class="no-emp-msg" ng-if="employeeList==null"><p><b>Oops !</b> It seems like you don't have any employee records</p>
+	<p><b>Let's get you started </b>, click on add employee button on the right to add an employee</p>
+	
+	</div>
+
+			<div class="table-div"  ng-if="employeeList!=null && employeeList.length>0">
+			<table>
+			<tr>
+			<th>Sl.No</th>
+			<th>Employee name</th>
+			<th>Designation</th>
+			<th>Mobile Number</th>
+			<th>Email</th>
+			<th>DOB</th>
+			<th>Age</th>
+			<th>Address</th>
+			<th>Modify</th>
+			</tr>
+				<tr ng-repeat="x in employeeList">
+				<td>{{$index+1}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.designation}}</td>
+					<td>{{x.mobile}}</td>
+					<td>{{x.email}}</td>
+					<td>{{x.dob |date}}</td>
+					<td>{{x.age}}</td>
+					<td>{{x.address}}</td>
+					<td><button class="edit-info" ng-click="editEmployee(x)" ><i class="fa fa-pencil" aria-hidden="true"></i></button> 
+					<button class="delete-info" ng-click="deleteEmployee(x)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+				</tr>
+
+			</table></div>
+
+<div  all-employees  ng-model="employeeList" all-list=employeeList></div>
+
+
+		</div>
+
+		<div class="add-employee-container" style="width: 60%; margin: auto;"
+			ng-show=shouldShow>
+<div class="employee-form-header"><i class="fa fa-wrench panel-icon" aria-hidden="true"></i>Employee Panel</div>
+			<form name="employeeForm">
+				<div class="info-pair">
+					<!-- Employee name -->
+					<div class="details">
+						<label class="user-field"><i class="fa fa-user myIcons" aria-hidden="true"></i><b>Employee Name</b></label> <input
+							name="employeeName" type="text" ng-model="name"
+							placeholder="Employee name" ng-pattern="/^[a-zA-Z\s]*$/" ng-pattern-restrict=[a-zA-z\s] required> <label
+							class="Error-msg"
+							ng-show="employeeForm.employeeName.$touched && employeeForm.employeeName.$invalid">Employee
+							name cannot be blank</label>
+							
+							<label class="Error-msg" ng-show="employeeForm.employeeName.$error.pattern" >Invalid name</label>
+					</div>
+					<!-- Age -->
+					<div class="details">
+						<label class="user-field"><i class="fa fa-child myIcons" aria-hidden="true"></i><b>Age</b></label> <input name="age"
+							type="number" ng-model="age" placeholder="Age" required>
+					</div>
+				</div>
+
+				<div class="info-pair">
+					<div class="details">
+						<!-- Designation -->
+						<label class="user-field"><i class="fa fa-user-secret myIcons" aria-hidden="true"></i><b>Designation</b></label> <input
+							name="designation" type="text" ng-model="designation"
+							placeholder="Designation" required>
+					</div>
+
+					<div class="details">
+						<!--DOB  -->
+						<label class="user-field"><i class="fa fa-calendar-o myIcons" aria-hidden="true"></i><b>DOB</b></label> <input name="dob"
+							type="date" ng-model="dob" placeholder="Date of birth" required>
+					</div>
+
+				</div>
+				<div class="info-pair">
+					<div class="details">
+						<!--Mobile  -->
+						<label class="user-field"><i class="fa fa-phone myIcons" aria-hidden="true"></i><b>Mobile</b></label> <input
+							name="mobie" type="number" ng-model="mobile" ng-minlength="12" ng-maxlength="12" ng-required="true"
+							placeholder="Mobile number" required>
+							
+							 <label
+							class="Error-msg"
+							ng-show="employeeForm.mobie.$error.required  && 
+							 employeeForm.mobie.$dirty">Mobile number cannot be blank</label>
+							
+							 <label
+							class="Error-msg"
+							ng-show="employeeForm.mobie.$error.number">Enter valid mobile number</label>
+							
+							
+							<label
+							class="Error-msg"
+							ng-show="((employeeForm.mobie.$error.minlength || employeeForm.mobie.$error.maxlength) && 
+							 employeeForm.mobie.$dirty)">Enter valid mobile number</label>
+					</div>
+
+					<!--Email  -->
+					<div class="details">
+						<label class="user-field"><i class="fa fa-envelope myIcons" aria-hidden="true"></i><b>Email</b></label> <input name="email"
+							type="email" ng-model="email" placeholder="Email" required>
+							 <label
+							class="Error-msg"
+							ng-show="employeeForm.email.$dirty && employeeForm.email.$invalid">Incorrect Email Id
+							</label>
+					</div>
+
+				</div>
+				<!-- Address -->
+				<label class="user-field"><i class="fa fa-address-card-o myIcons" aria-hidden="true"></i><b>Address</b></label>
+				<textarea class="address-field" rows="6" cols="35" ng-model="address"></textarea>
+				
+				<div class="button-container">
+					<button ng-click="addEmployee()" class="emp-button" ng-disabled	="employeeForm.$invalid || showBtnEdit" ng-show="!showBtnEdit"><i class="fa fa-user-plus myIcons" aria-hidden="true"></i>Add</button>
+					
+					<button ng-click="onEditEvent()" class="emp-button" ng-show="showBtnEdit" ><i class="fa fa-floppy-o myIcons" aria-hidden="true"></i>Save</button>
+
+					<button ng-click="createEmployee(false)" class="emp-button cancel">Cancel</button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+
+	
+	
+	<div class="footer">
+	<div class="my-info">
+	<p><i class="fa fa-user-circle footer-icon" aria-hidden="true"></i>Mohd Aman Kareem</p>
+	<p><i class="fa fa-envelope footer-icon" aria-hidden="true"></i>mohdamankareem@gmail.com</p>
+	<p><i class="fa fa-mobile footer-icon" aria-hidden="true"></i>+91 8050913325</p>
+	</div>
+	</div>
+	
+</body>
+</html>
